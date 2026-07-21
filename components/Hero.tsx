@@ -5,7 +5,7 @@ export default function Hero() {
   return (
     <section className="relative flex min-h-screen flex-col justify-center overflow-hidden px-6">
       <AnimatedBackground />
-      <div className="relative z-10 mx-auto w-full max-w-5xl">
+      <div className="relative z-10 mx-auto w-full max-w-5xl pt-20">
         <p className="mb-4 font-mono text-sm uppercase tracking-[0.3em] text-accent">
           Desenvolvedor Fullstack · Freelancer
         </p>

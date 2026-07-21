@@ -21,4 +21,7 @@ describe("formatUpdatedAgo", () => {
     expect(formatUpdatedAgo("2026-06-21T00:00:00Z", now)).toBe("há 1 mês");
     expect(formatUpdatedAgo("2025-07-21T00:00:00Z", now)).toBe("há 1 ano");
   });
+  it("uses months (not '0 anos') at the 360-364 day year boundary", () => {
+    expect(formatUpdatedAgo("2025-07-24T00:00:00Z", now)).toBe("há 12 meses");
+  });
 });

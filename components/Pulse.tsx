@@ -2,6 +2,8 @@ import type { PulseStats } from "@/lib/types";
 import Section from "./Section";
 
 export default function Pulse({ stats }: { stats: PulseStats }) {
+  if (stats.totalRepos === 0) return null;
+
   const maxLang = Math.max(1, ...stats.languages.map((l) => l.count));
   const lastCommit =
     stats.daysSinceLastCommit === 0
