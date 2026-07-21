@@ -2,6 +2,9 @@ import Hero from "@/components/Hero";
 import Pulse from "@/components/Pulse";
 import Featured from "@/components/Featured";
 import RecentActivity from "@/components/RecentActivity";
+import Services from "@/components/Services";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 import {
   fetchRepos,
   computePulseStats,
@@ -26,6 +29,9 @@ export default async function Home() {
       <Pulse stats={stats} />
       <Featured projects={featured} />
       <RecentActivity repos={recent} />
+      <Services />
+      <Contact />
+      <Footer />
     </main>
   );
 }
