@@ -1,18 +1,31 @@
 import Hero from "@/components/Hero";
 import Pulse from "@/components/Pulse";
 import Featured from "@/components/Featured";
-import { fetchRepos, computePulseStats, buildFeatured } from "@/lib/github";
+import RecentActivity from "@/components/RecentActivity";
+import {
+  fetchRepos,
+  computePulseStats,
+  buildFeatured,
+  getRecentActivity,
+} from "@/lib/github";
+import { FEATURED } from "@/lib/featured";
 
 export default async function Home() {
   const repos = await fetchRepos();
   const stats = computePulseStats(repos);
   const featured = buildFeatured(repos);
+  const recent = getRecentActivity(
+    repos,
+    FEATURED.map((f) => f.name),
+    6
+  );
 
   return (
     <main>
       <Hero />
       <Pulse stats={stats} />
       <Featured projects={featured} />
+      <RecentActivity repos={recent} />
     </main>
   );
 }
