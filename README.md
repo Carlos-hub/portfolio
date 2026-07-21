@@ -1,60 +1,36 @@
-# 🚀 Carlos Miguel de Lara — Portfólio Profissional
+# Portfolio — Carlos de Lara
 
-Bem-vindo ao meu portfólio! Aqui você encontra meus principais projetos, habilidades e experiências como desenvolvedor freelancer. Meu objetivo é entregar soluções de alta qualidade, com foco em resultados e satisfação do cliente.
+Portfolio pessoal de desenvolvedor fullstack freelancer. Single-page em
+Next.js com dados dos repositórios do GitHub puxados ao vivo (ISR) e CTA
+direto para WhatsApp.
 
----
+## Stack
 
-## 💡 Sobre Mim
+Next.js 15 (App Router) · TypeScript · Tailwind CSS v4 · Framer Motion · Vitest
 
-Sou um desenvolvedor apaixonado por tecnologia, inovação e desafios. Tenho experiência em diversas áreas do desenvolvimento de software, atuando com:
+## Rodando local
 
-- Desenvolvimento Web (Front-end & Back-end)
-- APIs e Integrações
+```bash
+npm install
+npm run dev
+```
 
----
+Abre http://localhost:3000.
 
-## 🏆 Diferenciais
+## Variáveis de ambiente (opcional)
 
-- Comprometimento com prazos e qualidade
-- Comunicação clara e transparente
-- Foco em resultados e geração de valor
-- Adaptação rápida a novas demandas
-- Atendimento personalizado para cada cliente
+Copie `.env.example` para `.env.local`. Definir `GITHUB_TOKEN` sobe o rate
+limit da API do GitHub de 60/h para 5000/h. Sem token, o site funciona
+normalmente (fetch com cache ISR de 1h).
 
----
+## Scripts
 
-## 🌟 Serviços Oferecidos
+- `npm run dev` — desenvolvimento
+- `npm run build` — build de produção
+- `npm test` — testes unitários da camada de dados
+- `npm run typecheck` — checagem de tipos
 
-- Desenvolvimento de sites e sistemas sob medida
-- Criação de landing pages de alta conversão
-- Aplicativos mobile (Android/iOS)
-- Consultoria técnica e otimização de projetos
+## Deploy
 
----
-
-## 📂 Principais Projetos
-
-### 🔥 Plataforma de Evento Ignite Lab
-- **Link:** [ignite-lab-event-platform](https://ignite-lab-event-platform-oxcfjgybl-carlos-hub.vercel.app/)
-- **Descrição:** Plataforma completa para gestão e transmissão de eventos online, com área de inscrição, agenda dinâmica e player de vídeo integrado.
-- **Tecnologias:** ReactJS, GraphQL
-
-### 🥗 Restaurante Vegano — Projeto de TCC
-- **Back-end:** [serveless-pouca-carne (GitHub)](https://github.com/Carlos-hub/serveless-pouca-carne)
-- **Front-end:** [Pouca-carne (GitHub)](https://github.com/Carlos-hub/Pouca-carne)
-- **Descrição:** Sistema completo para restaurante vegano, incluindo cadastro de clientes, entregadores, produtos e pedidos, além de painel administrativo e interface para clientes.
-- **Tecnologias:** TypeScript, Node.js, ExpressJS, Prisma, ReactJS, Vite, TailwindCSS, PHP, Laravel, Filament,
-
----
-
-## 📞 Vamos Conversar?
-
-Se você busca um profissional comprometido, criativo e focado em resultados, entre em contato:
-
-- **E-mail:** delaracarlosmiguel@gmail.com
-- **LinkedIn:** [linkedin.com/in/carlos](https://www.linkedin.com/in/carlos-hub/)
-- **WhatsApp:** (49) 99111-7061
-
----
-
-> "Transformo ideias em soluções digitais de impacto. Vamos construir juntos o seu próximo projeto!"
+Deploy na Vercel: importe o repositório e (opcional) adicione `GITHUB_TOKEN`
+nas Environment Variables. Sem configuração extra.

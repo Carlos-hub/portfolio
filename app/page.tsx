@@ -1,3 +1,4 @@
+import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Pulse from "@/components/Pulse";
 import Featured from "@/components/Featured";
@@ -25,6 +26,7 @@ export default async function Home() {
 
   return (
     <main>
+      <Nav />
       <Hero />
       <Pulse stats={stats} />
       <Featured projects={featured} />
