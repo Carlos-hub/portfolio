@@ -73,7 +73,14 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <head>
+        <link rel="alternate" type="text/markdown" href="/index.md" />
         <link rel="alternate" type="text/plain" href="/llms.txt" />
+        <link rel="service-desc" type="text/plain" href="/llms.txt" />
+        <link
+          rel="api-catalog"
+          type="application/linkset+json"
+          href="/.well-known/api-catalog"
+        />
         <link rel="preconnect" href="https://api.github.com" />
         <noscript>
           {/* Framer Motion reveals start at opacity 0; keep them visible when
