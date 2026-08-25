@@ -3,14 +3,19 @@
 import { motion } from "framer-motion";
 import type { FeaturedProject } from "@/lib/types";
 import { formatUpdatedAgo } from "@/lib/format";
+import { dict } from "@/lib/dictionary";
+import type { Locale } from "@/lib/i18n";
 
 export default function ProjectCard({
   project,
   index,
+  locale,
 }: {
   project: FeaturedProject;
   index: number;
+  locale: Locale;
 }) {
+  const t = dict(locale);
   return (
     <motion.article
       data-reveal
@@ -25,7 +30,7 @@ export default function ProjectCard({
           {project.language}
         </span>
         <span className="text-xs text-muted">
-          {formatUpdatedAgo(project.pushedAt)}
+          {formatUpdatedAgo(project.pushedAt, locale)}
         </span>
       </div>
       <h3 className="text-2xl font-bold">{project.title}</h3>
@@ -40,7 +45,7 @@ export default function ProjectCard({
             rel="noopener noreferrer"
             className="rounded-full bg-accent px-5 py-2 text-sm font-semibold text-black"
           >
-            Demo ao vivo
+            {t.featured.demo}
           </a>
         )}
         <a
@@ -49,7 +54,7 @@ export default function ProjectCard({
           rel="noopener noreferrer"
           className="rounded-full border border-border px-5 py-2 text-sm font-semibold transition-colors group-hover:border-accent"
         >
-          Código
+          {t.featured.code}
         </a>
       </div>
     </motion.article>

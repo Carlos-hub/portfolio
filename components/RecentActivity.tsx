@@ -1,14 +1,23 @@
 import type { Repo } from "@/lib/types";
 import Section from "./Section";
 import { formatUpdatedAgo } from "@/lib/format";
+import { dict } from "@/lib/dictionary";
+import type { Locale } from "@/lib/i18n";
 
-export default function RecentActivity({ repos }: { repos: Repo[] }) {
+export default function RecentActivity({
+  repos,
+  locale,
+}: {
+  repos: Repo[];
+  locale: Locale;
+}) {
   if (repos.length === 0) return null;
+  const t = dict(locale);
   return (
     <Section
-      id="atividade"
-      eyebrow="Direto da esteira"
-      title="Atividade recente"
+      id={t.ids.activity}
+      eyebrow={t.activity.eyebrow}
+      title={t.activity.title}
     >
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {repos.map((r) => (
@@ -26,10 +35,10 @@ export default function RecentActivity({ repos }: { repos: Repo[] }) {
               )}
             </div>
             <p className="mt-2 line-clamp-2 text-xs text-muted">
-              {r.description ?? "Projeto em evolução."}
+              {r.description ?? t.activity.fallbackDescription}
             </p>
             <span className="mt-3 text-xs text-muted">
-              {formatUpdatedAgo(r.pushedAt)}
+              {formatUpdatedAgo(r.pushedAt, locale)}
             </span>
           </a>
         ))}

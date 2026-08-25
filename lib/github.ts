@@ -1,5 +1,6 @@
 import type { RawRepo, Repo, FeaturedProject, PulseStats } from "./types";
 import { FEATURED } from "./featured";
+import { DEFAULT_LOCALE, type Locale } from "./i18n";
 
 const REPOS_URL =
   "https://api.github.com/users/Carlos-hub/repos?per_page=100&sort=updated";
@@ -43,14 +44,17 @@ export function computePulseStats(repos: Repo[]): PulseStats {
   };
 }
 
-export function buildFeatured(repos: Repo[]): FeaturedProject[] {
+export function buildFeatured(
+  repos: Repo[],
+  locale: Locale = DEFAULT_LOCALE
+): FeaturedProject[] {
   const byName = new Map(repos.map((r) => [r.name, r]));
   return FEATURED.map((c) => {
     const live = byName.get(c.name);
     return {
       name: c.name,
       title: c.title,
-      description: c.description,
+      description: c.description[locale],
       language: live?.language ?? c.fallbackLanguage,
       demoUrl: live?.homepage ?? c.fallbackDemoUrl,
       codeUrl: c.codeUrl,

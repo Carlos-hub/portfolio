@@ -1,13 +1,15 @@
 import type { MetadataRoute } from "next";
-import { AUTHOR_SHORT, DESCRIPTION, SITE_NAME } from "@/lib/site";
+import { AUTHOR_SHORT, siteCopy } from "@/lib/site";
+import { DEFAULT_LOCALE, HTML_LANG } from "@/lib/i18n";
 
 export default function manifest(): MetadataRoute.Manifest {
+  const copy = siteCopy(DEFAULT_LOCALE);
   return {
-    name: SITE_NAME,
+    name: copy.siteName,
     short_name: AUTHOR_SHORT,
-    description: DESCRIPTION,
-    lang: "pt-BR",
-    start_url: "/",
+    description: copy.description,
+    lang: HTML_LANG[DEFAULT_LOCALE],
+    start_url: `/${DEFAULT_LOCALE}`,
     display: "standalone",
     background_color: "#0a0a0a",
     theme_color: "#0a0a0a",

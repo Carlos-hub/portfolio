@@ -1,25 +1,24 @@
 import Section from "./Section";
 import WhatsappButton from "./WhatsappButton";
+import { dict } from "@/lib/dictionary";
+import type { Locale } from "@/lib/i18n";
+import { EMAIL } from "@/lib/site";
 
-export default function Contact() {
+export default function Contact({ locale }: { locale: Locale }) {
+  const t = dict(locale);
   return (
-    <Section id="contato" eyebrow="Bora começar" title="Vamos conversar?">
-      <p className="max-w-xl text-lg text-muted">
-        Tem um projeto em mente? Me chama no WhatsApp — respondo rápido e a
-        primeira conversa é sem compromisso.
-      </p>
+    <Section
+      id={t.ids.contact}
+      eyebrow={t.contact.eyebrow}
+      title={t.contact.title}
+    >
+      <p className="max-w-xl text-lg text-muted">{t.contact.lead}</p>
       <div className="mt-8">
-        <WhatsappButton
-          label="Chamar no WhatsApp →"
-          message="Olá Carlos! Quero conversar sobre um projeto."
-        />
+        <WhatsappButton label={t.contact.cta} message={t.contact.ctaMessage} />
       </div>
       <div className="mt-10 flex flex-wrap gap-x-8 gap-y-2 text-sm text-muted">
-        <a
-          className="hover:text-accent"
-          href="mailto:delaracarlosmiguel@gmail.com"
-        >
-          delaracarlosmiguel@gmail.com
+        <a className="hover:text-accent" href={`mailto:${EMAIL}`}>
+          {EMAIL}
         </a>
         <a
           className="hover:text-accent"

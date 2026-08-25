@@ -1,11 +1,35 @@
 import { ImageResponse } from "next/og";
-import { AUTHOR_SHORT, JOB_TITLE } from "@/lib/site";
+import { AUTHOR_SHORT } from "@/lib/site";
+import { DEFAULT_LOCALE, LOCALES, isLocale } from "@/lib/i18n";
+import { dict } from "@/lib/dictionary";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = `${AUTHOR_SHORT} — ${JOB_TITLE}`;
+export const alt = `${AUTHOR_SHORT} — Fullstack Developer / Desenvolvedor Fullstack`;
 
-export default function OpengraphImage() {
+export function generateStaticParams() {
+  return LOCALES.map((locale) => ({ locale }));
+}
+
+const HEADLINE = {
+  pt: "Sites, sistemas e apps sob medida — do back-end ao pixel final.",
+  en: "Custom websites, systems and apps — from the back end to the last pixel.",
+};
+
+const STACK_LINE = {
+  pt: "Web · Sistemas · Mobile · APIs · Qualquer linguagem",
+  en: "Web · Systems · Mobile · APIs · Any language",
+};
+
+export default async function OpengraphImage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale: raw } = await params;
+  const locale = isLocale(raw) ? raw : DEFAULT_LOCALE;
+  const t = dict(locale);
+
   return new ImageResponse(
     (
       <div
@@ -28,7 +52,7 @@ export default function OpengraphImage() {
             color: "#39ff14",
           }}
         >
-          Desenvolvedor Fullstack · Freelancer
+          {t.hero.eyebrow}
         </div>
         <div
           style={{
@@ -41,7 +65,7 @@ export default function OpengraphImage() {
           {AUTHOR_SHORT}
         </div>
         <div style={{ marginTop: 32, fontSize: 38, color: "#8a8a8a" }}>
-          Sites, sistemas e apps sob medida — do back-end ao pixel final.
+          {HEADLINE[locale]}
         </div>
         <div
           style={{
@@ -51,7 +75,7 @@ export default function OpengraphImage() {
             color: "#39ff14",
           }}
         >
-          Web · Sistemas · Mobile · APIs · Qualquer linguagem
+          {STACK_LINE[locale]}
         </div>
       </div>
     ),

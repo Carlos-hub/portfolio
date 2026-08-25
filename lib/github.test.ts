@@ -134,6 +134,14 @@ describe("buildFeatured", () => {
     expect(featured.length).toBe(6);
   });
 
+  it("resolves the curated description for the requested locale", () => {
+    const pt = buildFeatured([], "pt").find((f) => f.name === "codeFlix-front")!;
+    const en = buildFeatured([], "en").find((f) => f.name === "codeFlix-front")!;
+    expect(pt.description).toContain("Interface");
+    expect(en.description).toContain("streaming interface");
+    expect(en.description).not.toBe(pt.description);
+  });
+
   it("prefers live homepage as demo url, else curated fallback", () => {
     const featured = buildFeatured([
       repo({ name: "codeFlix-front", homepage: "https://new-demo.dev" }),

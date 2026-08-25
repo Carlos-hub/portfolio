@@ -1,7 +1,9 @@
+import type { Localized } from "./i18n";
+
 export interface CuratedProject {
   name: string; // repo name on GitHub
-  title: string; // display title
-  description: string; // curated copy
+  title: string; // display title (same in both languages)
+  description: Localized<string>; // curated copy
   fallbackLanguage: string;
   fallbackDemoUrl: string | null;
   codeUrl: string;
@@ -13,8 +15,10 @@ export const FEATURED: CuratedProject[] = [
   {
     name: "planejai-trilha",
     title: "PlanejAI + Trilha",
-    description:
-      "Planejador de aulas alinhado à BNCC com IA — gera plano de aula e trilha de estudo gamificada (quiz autocorrigido, acesso por código) num clique. MVP do Hackathon FIAP.",
+    description: {
+      pt: "Planejador de aulas alinhado à BNCC com IA — gera plano de aula e trilha de estudo gamificada (quiz autocorrigido, acesso por código) num clique. MVP do Hackathon FIAP.",
+      en: "AI lesson planner aligned to the Brazilian national curriculum (BNCC) — generates a lesson plan and a gamified study track (self-grading quiz, code-based access) in one click. FIAP Hackathon MVP.",
+    },
     fallbackLanguage: "Go",
     fallbackDemoUrl: null,
     codeUrl: "https://github.com/Carlos-hub/planejai-trilha",
@@ -23,8 +27,10 @@ export const FEATURED: CuratedProject[] = [
   {
     name: "ignite-lab-eventPlatform",
     title: "Ignite Lab Event",
-    description:
-      "Plataforma de evento online: inscrição, agenda dinâmica e player de vídeo integrado.",
+    description: {
+      pt: "Plataforma de evento online: inscrição, agenda dinâmica e player de vídeo integrado.",
+      en: "Online event platform: sign-up, dynamic schedule and an embedded video player.",
+    },
     fallbackLanguage: "TypeScript",
     fallbackDemoUrl:
       "https://ignite-lab-event-platform-oxcfjgybl-carlos-hub.vercel.app",
@@ -34,8 +40,10 @@ export const FEATURED: CuratedProject[] = [
   {
     name: "Pouca-carne",
     title: "Pouca Carne",
-    description:
-      "Sistema fullstack para restaurante vegano (TCC): pedidos, clientes, entregadores e painel administrativo.",
+    description: {
+      pt: "Sistema fullstack para restaurante vegano (TCC): pedidos, clientes, entregadores e painel administrativo.",
+      en: "Fullstack system for a vegan restaurant (final-year project): orders, customers, delivery drivers and an admin dashboard.",
+    },
     fallbackLanguage: "TypeScript",
     fallbackDemoUrl: "https://pouca-carne.vercel.app",
     codeUrl: "https://github.com/Carlos-hub/Pouca-carne",
@@ -44,8 +52,10 @@ export const FEATURED: CuratedProject[] = [
   {
     name: "codeFlix-front",
     title: "CodeFlix",
-    description:
-      "Interface estilo streaming (Netflix-like) construída em Next.js.",
+    description: {
+      pt: "Interface estilo streaming (Netflix-like) construída em Next.js.",
+      en: "Netflix-like streaming interface built with Next.js.",
+    },
     fallbackLanguage: "TypeScript",
     fallbackDemoUrl: "https://code-flix-front.vercel.app",
     codeUrl: "https://github.com/Carlos-hub/codeFlix-front",
@@ -54,8 +64,10 @@ export const FEATURED: CuratedProject[] = [
   {
     name: "devEvolution",
     title: "devEvolution",
-    description:
-      "API de delivery de produtos e pedidos, com todas as rotas documentadas em Swagger.",
+    description: {
+      pt: "API de delivery de produtos e pedidos, com todas as rotas documentadas em Swagger.",
+      en: "Delivery API for products and orders, with every route documented in Swagger.",
+    },
     fallbackLanguage: "TypeScript",
     fallbackDemoUrl: "https://devevolution-production.up.railway.app",
     codeUrl: "https://github.com/Carlos-hub/devEvolution",
@@ -64,8 +76,10 @@ export const FEATURED: CuratedProject[] = [
   {
     name: "nlw-return",
     title: "NLW Return",
-    description:
-      "Widget de feedback (bug, ideia ou elogio) com captura de screenshot integrada.",
+    description: {
+      pt: "Widget de feedback (bug, ideia ou elogio) com captura de screenshot integrada.",
+      en: "Feedback widget (bug, idea or praise) with built-in screenshot capture.",
+    },
     fallbackLanguage: "TypeScript",
     fallbackDemoUrl: "https://nlw-return-portifolio.vercel.app",
     codeUrl: "https://github.com/Carlos-hub/nlw-return",
