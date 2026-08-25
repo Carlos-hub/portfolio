@@ -16,19 +16,26 @@ import {
 } from "@/lib/github";
 import { FEATURED } from "@/lib/featured";
 import { buildJsonLd } from "@/lib/schema";
-import { META_DESCRIPTION, SITE_NAME } from "@/lib/site";
-import type { Metadata } from "next";
+import { dict } from "@/lib/dictionary";
+import { LOCALES, isLocale } from "@/lib/i18n";
+import { notFound } from "next/navigation";
 
-export const metadata: Metadata = {
-  title: `${SITE_NAME} | Sites, Sistemas e Apps sob Medida`,
-  description: META_DESCRIPTION,
-  alternates: { canonical: "/" },
-};
+export function generateStaticParams() {
+  return LOCALES.map((locale) => ({ locale }));
+}
 
-export default async function Home() {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  if (!isLocale(locale)) notFound();
+
+  const t = dict(locale);
   const repos = await fetchRepos();
   const stats = computePulseStats(repos);
-  const featured = buildFeatured(repos);
+  const featured = buildFeatured(repos, locale);
   const recent = getRecentActivity(
     repos,
     FEATURED.map((f) => f.name),
@@ -42,27 +49,27 @@ export default async function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(buildJsonLd(featured)),
+          __html: JSON.stringify(buildJsonLd(featured, locale)),
         }}
       />
       <a
-        href="#projetos"
+        href={`#${t.ids.projects}`}
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-accent focus:px-4 focus:py-2 focus:text-black"
       >
-        Pular para o conteúdo
+        {t.skipToContent}
       </a>
-      <Nav />
+      <Nav locale={locale} />
       <main>
-        <Hero />
-        <Pulse stats={stats} />
-        <Featured projects={featured} />
-        <RecentActivity repos={recent} />
-        <About />
-        <Services />
-        <Faq />
-        <Contact />
+        <Hero locale={locale} />
+        <Pulse stats={stats} locale={locale} />
+        <Featured projects={featured} locale={locale} />
+        <RecentActivity repos={recent} locale={locale} />
+        <About locale={locale} />
+        <Services locale={locale} />
+        <Faq locale={locale} />
+        <Contact locale={locale} />
       </main>
-      <Footer />
+      <Footer locale={locale} />
     </>
   );
 }

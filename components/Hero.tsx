@@ -1,7 +1,10 @@
 import AnimatedBackground from "./AnimatedBackground";
 import WhatsappButton from "./WhatsappButton";
+import { dict } from "@/lib/dictionary";
+import type { Locale } from "@/lib/i18n";
 
-export default function Hero() {
+export default function Hero({ locale }: { locale: Locale }) {
+  const t = dict(locale);
   return (
     <section
       aria-labelledby="hero-title"
@@ -13,7 +16,7 @@ export default function Hero() {
             the site is about, not only who it is about. */}
         <h1 id="hero-title">
           <span className="mb-4 block font-mono text-sm uppercase tracking-[0.3em] text-accent">
-            Desenvolvedor Fullstack · Freelancer
+            {t.hero.eyebrow}
           </span>
           <span className="block text-6xl font-black leading-[0.95] tracking-tight sm:text-8xl">
             Carlos
@@ -21,16 +24,9 @@ export default function Hero() {
             de Lara
           </span>
         </h1>
-        <p className="mt-8 max-w-xl text-lg text-muted">
-          Transformo ideias em produtos digitais no ar. Sites, sistemas web,
-          landing pages e apps sob medida — do back-end ao pixel final, na
-          linguagem que o projeto pedir.
-        </p>
+        <p className="mt-8 max-w-xl text-lg text-muted">{t.hero.lead}</p>
         <div className="mt-10">
-          <WhatsappButton
-            label="Vamos conversar →"
-            message="Olá Carlos! Vi seu portfolio e quero conversar sobre um projeto."
-          />
+          <WhatsappButton label={t.hero.cta} message={t.hero.ctaMessage} />
         </div>
       </div>
     </section>

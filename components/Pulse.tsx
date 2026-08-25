@@ -1,28 +1,36 @@
 import type { PulseStats } from "@/lib/types";
 import Section from "./Section";
+import { dict } from "@/lib/dictionary";
+import { formatDaysAgo } from "@/lib/format";
+import type { Locale } from "@/lib/i18n";
 
-export default function Pulse({ stats }: { stats: PulseStats }) {
+export default function Pulse({
+  stats,
+  locale,
+}: {
+  stats: PulseStats;
+  locale: Locale;
+}) {
   if (stats.totalRepos === 0) return null;
 
+  const t = dict(locale);
   const maxLang = Math.max(1, ...stats.languages.map((l) => l.count));
-  const lastCommit =
-    stats.daysSinceLastCommit === 0
-      ? "hoje"
-      : `há ${stats.daysSinceLastCommit} dia${
-          stats.daysSinceLastCommit > 1 ? "s" : ""
-        }`;
+  const lastCommit = formatDaysAgo(stats.daysSinceLastCommit, locale);
 
   return (
-    <Section id="pulse" eyebrow="Ao vivo do GitHub" title="Sempre codando">
+    <Section id="pulse" eyebrow={t.pulse.eyebrow} title={t.pulse.title}>
       <div className="grid gap-6 sm:grid-cols-3">
-        <Stat value={String(stats.totalRepos)} label="repositórios públicos" />
-        <Stat value={String(stats.liveProjects)} label="projetos no ar" />
-        <Stat value={lastCommit} label="último commit" />
+        <Stat value={String(stats.totalRepos)} label={t.pulse.repos} />
+        <Stat
+          value={String(stats.liveProjects)}
+          label={t.pulse.liveProjects}
+        />
+        <Stat value={lastCommit} label={t.pulse.lastCommit} />
       </div>
 
       <div className="mt-12">
         <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-muted">
-          Linguagens mais usadas
+          {t.pulse.topLanguages}
         </p>
         <div className="space-y-3">
           {stats.languages.map((l) => (
