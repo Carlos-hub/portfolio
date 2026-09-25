@@ -131,7 +131,7 @@ describe("buildFeatured", () => {
   it("preserves curated order with PlanejAI first", () => {
     const featured = buildFeatured([]);
     expect(featured[0].name).toBe("planejai-trilha");
-    expect(featured.length).toBe(6);
+    expect(featured.length).toBe(7);
   });
 
   it("resolves the curated description for the requested locale", () => {

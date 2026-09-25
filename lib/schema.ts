@@ -132,7 +132,7 @@ export function buildJsonLd(projects: FeaturedProject[], locale: Locale) {
             name: p.title,
             description: p.description,
             programmingLanguage: p.language,
-            codeRepository: p.codeUrl,
+            ...(p.codeUrl ? { codeRepository: p.codeUrl } : {}),
             ...(p.demoUrl ? { url: p.demoUrl } : {}),
             dateModified: p.pushedAt,
             inLanguage: lang,

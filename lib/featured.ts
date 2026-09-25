@@ -6,7 +6,7 @@ export interface CuratedProject {
   description: Localized<string>; // curated copy
   fallbackLanguage: string;
   fallbackDemoUrl: string | null;
-  codeUrl: string;
+  codeUrl: string | null; // null = private repo
   fallbackPushedAt: string; // used only if API is down
 }
 
@@ -23,6 +23,18 @@ export const FEATURED: CuratedProject[] = [
     fallbackDemoUrl: null,
     codeUrl: "https://github.com/Carlos-hub/planejai-trilha",
     fallbackPushedAt: "2026-07-17T00:00:00Z",
+  },
+  {
+    name: "central-assinante",
+    title: "Central do Assinante",
+    description: {
+      pt: "SaaS multi-tenant para provedores de internet integrados ao IXC: central do assinante com faturas, PIX e boleto, PWA instalável com push segmentado, assistente com IA, cadastro self-service e cobrança recorrente via Asaas. Go + Next.js + Postgres.",
+      en: "Multi-tenant SaaS for internet service providers running IXC: a subscriber portal with invoices, PIX and bank slips, an installable PWA with segmented push, an AI assistant, self-service signup and recurring billing via Asaas. Go + Next.js + Postgres.",
+    },
+    fallbackLanguage: "Go",
+    fallbackDemoUrl: "https://plataforma.central.carlosmiguel.dev.br/",
+    codeUrl: null,
+    fallbackPushedAt: "2026-09-24T00:00:00Z",
   },
   {
     name: "ignite-lab-eventPlatform",

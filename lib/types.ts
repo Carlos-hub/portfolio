@@ -26,7 +26,7 @@ export interface FeaturedProject {
   description: string; // curated, always present
   language: string;
   demoUrl: string | null;
-  codeUrl: string;
+  codeUrl: string | null;
   pushedAt: string; // live if available, else fallback
 }
 

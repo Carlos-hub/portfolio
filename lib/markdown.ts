@@ -148,7 +148,9 @@ ${services(locale)
 ${projects
   .map(
     (p) =>
-      `### ${p.title}\n${p.description}\n- ${l.mainLanguage}: ${p.language}\n- ${l.code}: ${p.codeUrl}${
+      `### ${p.title}\n${p.description}\n- ${l.mainLanguage}: ${p.language}${
+        p.codeUrl ? `\n- ${l.code}: ${p.codeUrl}` : ""
+      }${
         p.demoUrl ? `\n- ${l.liveDemo}: ${p.demoUrl}` : ""
       }\n- ${l.lastUpdate}: ${p.pushedAt.slice(0, 10)}`
   )
