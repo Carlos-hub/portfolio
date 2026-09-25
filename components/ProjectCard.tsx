@@ -48,14 +48,16 @@ export default function ProjectCard({
             {t.featured.demo}
           </a>
         )}
-        <a
-          href={project.codeUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="rounded-full border border-border px-5 py-2 text-sm font-semibold transition-colors group-hover:border-accent"
-        >
-          {t.featured.code}
-        </a>
+        {project.codeUrl && (
+          <a
+            href={project.codeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full border border-border px-5 py-2 text-sm font-semibold transition-colors group-hover:border-accent"
+          >
+            {t.featured.code}
+          </a>
+        )}
       </div>
     </motion.article>
   );
